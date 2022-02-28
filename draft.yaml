@@ -1,0 +1,23 @@
+models:
+  Menu:
+    nama: string
+    harga: integer
+    gambar: string
+    deskripsi: text
+    stok: integer
+    relationships:
+      hasMany: TransaksiDetail
+  TransaksiItem:
+    id_user: foreign:users.id
+    no_meja: integer
+    relationships:
+      belongsTo: User
+      hasMany: TransaksiDetail, Pembayaran
+  TransaksiDetail:
+    id_transaksi_item: foreign:transaksi_items.id
+    id_menu: foreign:menus.id
+    jumlah: integer
+  Pembayaran:
+    id_transaksi_item: foreign:transaksi_items.id
+    total: integer
+seeders: User, Menu, TransaksiItem, TransaksiDetail, Pembayaran

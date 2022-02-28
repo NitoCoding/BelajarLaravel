@@ -1,0 +1,23 @@
+created:
+    - database/factories/MenuFactory.php
+    - database/factories/TransaksiItemFactory.php
+    - database/factories/TransaksiDetailFactory.php
+    - database/factories/PembayaranFactory.php
+    - database/migrations/2022_02_27_122601_create_menus_table.php
+    - database/migrations/2022_02_27_122602_create_transaksi_items_table.php
+    - database/migrations/2022_02_27_122603_create_transaksi_details_table.php
+    - database/migrations/2022_02_27_122604_create_pembayarans_table.php
+    - app/Models/Menu.php
+    - app/Models/TransaksiItem.php
+    - app/Models/TransaksiDetail.php
+    - app/Models/Pembayaran.php
+    - database/seeders/UserSeeder.php
+    - database/seeders/MenuSeeder.php
+    - database/seeders/TransaksiItemSeeder.php
+    - database/seeders/TransaksiDetailSeeder.php
+    - database/seeders/PembayaranSeeder.php
+models:
+    Menu: { nama: string, harga: integer, gambar: string, deskripsi: text, stok: integer, relationships: { hasMany: TransaksiDetail } }
+    TransaksiItem: { id_user: 'foreign:users.id', no_meja: integer, relationships: { belongsTo: User, hasMany: 'TransaksiDetail, Pembayaran' } }
+    TransaksiDetail: { id_transaksi_item: 'foreign:transaksi_items.id', id_menu: 'foreign:menus.id', jumlah: integer }
+    Pembayaran: { id_transaksi_item: 'foreign:transaksi_items.id', total: integer }
